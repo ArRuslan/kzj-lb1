@@ -7,6 +7,11 @@
   <version>1.0-SNAPSHOT</version>
   <name>app Maven Webapp</name>
 
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+    </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -15,18 +20,24 @@
       <scope>test</scope>
     </dependency>
 
-<dependency>
-  <groupId>ua.nure.kz</groupId>
-  <artifactId>calc</artifactId>
-  <version>1.0-SNAPSHOT</version>
-</dependency>
+    <dependency>
+      <groupId>ua.nure.kz</groupId>
+      <artifactId>calc</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
 
-<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
-<dependency>
-    <groupId>org.apache.tomcat</groupId>
-    <artifactId>tomcat-servlet-api</artifactId>
-    <version>11.0.11</version>
-</dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
+    <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-servlet-api</artifactId>
+        <version>11.0.11</version>
+    </dependency>
+
+    <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>1.2</version>
+    </dependency>
 
   </dependencies>
   <build>
@@ -34,33 +45,33 @@
 
     <plugins>
       <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-antrun-plugin</artifactId>
-      <version>1.8</version>
-      <configuration>
-        <target>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>1.8</version>
+          <configuration>
+            <target>
 
-<property name="tomcat.home.dir" location="/home/ruslan/dev/java/nure/kzj-lb1-test1/app/../apache-tomcat-11.0.11" />
+              <property name="tomcat.home.dir" location="/home/ruslan/dev/java/nure/kzj-lb1-test1/app/../apache-tomcat-11.0.11" />
 
-<path id="tomcat.classpath">
-  <fileset dir="${tomcat.home.dir}/lib">
-    <include name="catalina-ant.jar" />
-    <include name="tomcat-coyote.jar" />
-    <include name="tomcat-util.jar" />
-  </fileset>
-  <fileset dir="${tomcat.home.dir}/bin">
-    <include name="tomcat-juli.jar" />
-  </fileset>
-</path>
+              <path id="tomcat.classpath">
+                <fileset dir="${tomcat.home.dir}/lib">
+                  <include name="catalina-ant.jar" />
+                  <include name="tomcat-coyote.jar" />
+                  <include name="tomcat-util.jar" />
+                </fileset>
+                <fileset dir="${tomcat.home.dir}/bin">
+                  <include name="tomcat-juli.jar" />
+                </fileset>
+              </path>
 
-<taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"
-  classpathref="tomcat.classpath" />
- 
-<reload url="http://localhost:8080/manager/text"
-  username="manager" password="manager" path="/app" />
+              <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask"
+                       classpathref="tomcat.classpath" />
 
-        </target>
-      </configuration>
+              <reload url="http://localhost:8080/manager/text"
+                      username="manager" password="manager" path="/app" />
+
+            </target>
+          </configuration>
       </plugin>
     </plugins>
   </build>
