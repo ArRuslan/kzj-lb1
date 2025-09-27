@@ -43,7 +43,7 @@ public class CalcServlet extends HttpServlet {
             a = Integer.parseInt(aStr);
             b = Integer.parseInt(bStr);
         } catch(NumberFormatException e) {
-            log.error("Failed to parse numbers: {0}", e);
+            log.error("Failed to parse numbers!", e);
             return;
         }
 
