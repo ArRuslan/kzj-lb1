@@ -1,8 +1,6 @@
 package ua.nure.kz;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +12,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 
-@WebServlet("/test")
+@WebServlet("/calculate")
 public class CalcServlet extends HttpServlet {
     private static final Log log = LogFactory.getLog(CalcServlet.class);
 
@@ -47,12 +45,19 @@ public class CalcServlet extends HttpServlet {
             return;
         }
 
-        int result;
+        int result = 0;
+        String error = null;
         switch (op) {
             case "add" -> result = Calc.add(a, b);
             case "subtract" -> result = Calc.subtract(a, b);
             case "multiply" -> result = Calc.multiply(a, b);
-            case "divide" -> result = Calc.divide(a, b);
+            case "divide" -> {
+                if(b == 0) {
+                    error = "Cannot divide by 0!";
+                } else {
+                    result = Calc.divide(a, b);
+                }
+            }
             default -> {
                 log.error("Invalid operation: " + op);
                 return;
@@ -62,7 +67,7 @@ public class CalcServlet extends HttpServlet {
         req.setAttribute("op", op);
         req.setAttribute("a", a);
         req.setAttribute("b", b);
-        req.setAttribute("result", result);
+        req.setAttribute("result", error != null ? error : String.valueOf(result));
 
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }

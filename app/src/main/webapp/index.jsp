@@ -22,15 +22,15 @@
     </style>
 </head>
 <body>
-<h2>Yo this is java calculator</h2>
-<form method="GET" action="test" class="d-flex col gap-2">
+<h2>Calculator</h2>
+<form method="GET" action="calculate" class="d-flex col gap-2">
     <input name="a" placeholder="A" type="number" value="${a}"/>
 
     <select name="op">
-        <option value="add" <%= request.getAttribute("op").equals("add") ? "selected" : "" %> >Add</option>
-        <option value="subtract" <%= request.getAttribute("op").equals("subtract") ? "selected" : "" %> >Subtract</option>
-        <option value="multiply" <%= request.getAttribute("op").equals("multiply") ? "selected" : "" %> >Multiply</option>
-        <option value="divide" <%= request.getAttribute("op").equals("divide") ? "selected" : "" %> >Divide</option>
+        <option value="add" <%= java.util.Objects.equals(request.getAttribute("op"), "add") ? "selected" : "" %> >Add</option>
+        <option value="subtract" <%= java.util.Objects.equals(request.getAttribute("op"), "subtract") ? "selected" : "" %> >Subtract</option>
+        <option value="multiply" <%= java.util.Objects.equals(request.getAttribute("op"), "multiply") ? "selected" : "" %> >Multiply</option>
+        <option value="divide" <%= java.util.Objects.equals(request.getAttribute("op"), "divide") ? "selected" : "" %> >Divide</option>
     </select>
 
     <input name="b" placeholder="B" type="number" value="${b}"/>
