@@ -2,7 +2,6 @@ package ua.nure.kz;
 
 import java.io.InputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
 import java.util.logging.LogManager;
 
 public class Demo {
@@ -14,8 +13,6 @@ public class Demo {
             ex.printStackTrace();
         }
     }
-
-    private static final Logger LOGGER = Logger.getLogger(Calc.class.getCanonicalName());
 
     public static void main(String[] args) {
         System.out.printf("1 + 2 = %d\n", Calc.add(1, 2));
