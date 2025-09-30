@@ -35,7 +35,7 @@
 
     <input name="b" placeholder="B" type="number" value="${b}"/>
 
-    <button type="submit">Calculate this bih</button>
+    <button type="submit">Calculate</button>
 </form>
 
 <%
